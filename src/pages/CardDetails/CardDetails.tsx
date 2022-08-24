@@ -3,18 +3,18 @@ import { useParams } from "react-router-dom";
 import CardDetailsProvider from "services/context/CardDetails";
 
 function CardDetails() {
-  const { id } = useParams();
-  if (!id) {
+  const { owner, repo } = useParams();
+  if (!owner || !repo) {
     return (
       <>
-        <h1>preciso de um id para buscar a carta</h1>
+        <h1>preciso de um usuário e repositório para buscar a carta</h1>
       </>
     );
   }
 
   return (
     <CardDetailsProvider>
-      <CardDetailsTemplate cardId={id} />;
+      <CardDetailsTemplate owner={owner} repo={repo} />
     </CardDetailsProvider>
   );
 }

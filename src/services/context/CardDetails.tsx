@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import api from "services/api/api";
 // import { CardsContextProps } from "./interface";
 
-import { CardsDetailsContextProps, DataCards } from "./types";
+import { CardsDetailsContextProps, BranchList } from "./types";
 
 export const CardsDetailsContext = createContext(
   {} as CardsDetailsContextProps
@@ -11,16 +11,16 @@ export const CardsDetailsContext = createContext(
 const CardDetailsProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [cardDetail, setCardDetail] = useState({} as DataCards);
+  const [cardDetail, setCardDetail] = useState({} as BranchList);
   const [loading, setLoading] = useState(false);
 
-  const getOneCard = async (cardID: string) => {
+  const getOneRepo = async (owner: string, repo: string) => {
     setLoading(true);
     // busca um card
     try {
-      const { data } = await api.get(`cards/${cardID}`);
+      const response = await api.get(`repos/${owner}/${repo}/branches`);
 
-      setCardDetail(data.data);
+      setCardDetail(response.data);
     } catch {
       console.log("erro ao buscar carta");
     } finally {
@@ -28,7 +28,7 @@ const CardDetailsProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const values = { cardDetail, getOneCard, loading };
+  const values = { cardDetail, getOneRepo, loading };
 
   return (
     <CardsDetailsContext.Provider value={values}>

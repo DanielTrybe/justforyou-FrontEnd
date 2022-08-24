@@ -49,7 +49,7 @@ function CompactCard({ card }: CardType) {
         <CardHeader
           action={
             <IconButton
-              onClick={() => navigate(`/${card.id}`)}
+              onClick={() => navigate(`/${card?.owner?.login}/${card?.name}`)}
               aria-label="settings"
             >
               <InfoIcon />
@@ -71,7 +71,7 @@ function CompactCard({ card }: CardType) {
               <a
                 target="_blank"
                 rel="noreferrer"
-                href={`https://github.com/${card?.owner?.login}/${card.name}`}
+                href={`https://github.com/${card?.owner?.login}/${card?.name}`}
               >
                 Click here to navigate to GitHub page
               </a>

@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainLayout />}>
             <Route path="" element={<CardsPage />} />
-            <Route path="/:id" element={<CardDetails />} />
+            <Route path="/:owner/:repo" element={<CardDetails />} />
           </Route>
         </Routes>
       </GitHubProvider>

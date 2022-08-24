@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import api from "services/api/api";
 // import { CardsContextProps } from "./interface";
 
-import { CardsContextProps, DataCards, PageAndSize } from "./types";
+import { CardsContextProps, DataCards } from "./types";
 
 export const GitHubContext = createContext({} as CardsContextProps);
 

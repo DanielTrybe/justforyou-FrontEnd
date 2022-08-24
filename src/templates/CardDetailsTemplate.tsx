@@ -1,16 +1,54 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useCardDetailsContext } from "hooks";
-import { Typography, Grid, Paper, Box } from "@mui/material";
+import {
+  Typography,
+  Grid,
+  Paper,
+  Box,
+  Card,
+  CardContent,
+  CardActions,
+  Button,
+} from "@mui/material";
+import CommitsModal from "components/modal/CommitsModal";
 
-type CardID = {
-  cardId: string;
+type BrachDetails = {
+  owner: string;
+  repo: string;
 };
 
-function CardDetailsTemplate({ cardId }: any) {
-  const { getOneCard, cardDetail, loading } = useCardDetailsContext();
+type BranchDetails = {
+  name: string;
+  commit: {
+    sha: string;
+    url: string;
+  };
+  protected: boolean;
+};
+
+type ModalInfo = {
+  owner: string;
+  repository: string;
+  sha: string;
+};
+
+function CardDetailsTemplate({ owner, repo }: BrachDetails) {
+  const { getOneRepo, cardDetail, loading } = useCardDetailsContext();
+
+  const [openModal, setOpenModal] = useState(false);
+  const [modalInfo, setModalInfo] = useState({} as ModalInfo);
+
+  const openDetailsPopUp = (card: BranchDetails) => {
+    setModalInfo({
+      owner: owner,
+      repository: repo,
+      sha: card?.commit?.sha,
+    });
+    setOpenModal(true);
+  };
 
   useEffect(() => {
-    getOneCard(cardId);
+    getOneRepo(owner, repo);
   }, []);
   // .
   return (
@@ -21,46 +59,43 @@ function CardDetailsTemplate({ cardId }: any) {
         <Grid
           container
           direction="row"
-          justifyContent="center"
+          justifyContent="flex-start"
           style={{ marginTop: 15 }}
         >
-          teste
-          {/* <Box
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              // alignItems: "center",
-              marginLeft: 15,
-            }}
-          >
-            <Typography>Name: {cardDetail?.name}</Typography>
-            <Typography>Evolves from: {cardDetail?.evolvesFrom}</Typography>
-            <Typography>HP: {cardDetail?.hp}</Typography>
-            <Typography>LVL: {cardDetail?.level}</Typography>
-            <Typography>Rarity: {cardDetail?.rarity}</Typography>
-            <Box style={{ marginTop: 15 }}>
-              {cardDetail?.attacks?.map((attack) => (
-                <Grid
-                  style={{
-                    marginTop: 15,
-                    border: "1px solid black",
-                    borderRadius: 5,
-                    maxWidth: 800,
-                    wordBreak: "break-word",
-                  }}
-                >
-                  <Typography>{attack?.name}</Typography>
-                  <Typography>{attack?.cost}</Typography>
-                  <Typography>{attack.convertedEnergyCost}</Typography>
-                  <Typography>{attack.damage}</Typography>
-                  <Typography>{attack.text}</Typography>
-                </Grid>
-              ))}
-            </Box>
-          </Box> */}
+          {cardDetail.length > 0 ? (
+            cardDetail.map((card) => (
+              <Card
+                sx={{ margin: 1, maxWidth: 320, minWidth: 320 }}
+                variant="outlined"
+              >
+                <CardContent>
+                  <Typography variant="h5" component="div">
+                    {card?.name}
+                  </Typography>
+                  <Typography
+                    color="text.secondary"
+                    style={{ wordBreak: "break-all" }}
+                  >
+                    Branch ID: {card?.commit?.sha}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button onClick={() => openDetailsPopUp(card)} size="small">
+                    See commits
+                  </Button>
+                </CardActions>
+              </Card>
+            ))
+          ) : (
+            <p>não achei</p>
+          )}
         </Grid>
       )}
+      <CommitsModal
+        modalInfo={modalInfo}
+        setOpen={setOpenModal}
+        open={openModal}
+      />
     </Grid>
   );
 }

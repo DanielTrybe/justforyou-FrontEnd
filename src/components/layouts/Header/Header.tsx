@@ -3,11 +3,22 @@ import { Grid, Box, Button } from "@mui/material";
 import { useStyles, CustomTextField } from "./style";
 import GitHubLogo from "images/github-logo.png";
 import { useGitHubContext } from "hooks";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Header() {
+  const history = useLocation();
+  const navigate = useNavigate();
+  console.log(history);
   const { search, setSearch, getUserGitHub } = useGitHubContext();
-
   const classes = useStyles();
+
+  const searchUser = () => {
+    if (history.pathname !== "/") {
+      navigate("/");
+    }
+    getUserGitHub();
+  };
+
   return (
     <Grid className={classes.header}>
       <Box
@@ -30,7 +41,7 @@ export default function Header() {
         onChange={(e) => setSearch(e.target.value)}
         data-testid="header-input"
       />
-      <Button data-testid="header-btn" onClick={() => getUserGitHub()}>
+      <Button data-testid="header-btn" onClick={() => searchUser()}>
         Buscar
       </Button>
     </Grid>

@@ -98,11 +98,6 @@ export type Card = {
   children?: JSX.Element;
 };
 
-export type PageAndSize = {
-  page: number;
-  size: number;
-};
-
 export interface CardsContextProps {
   cardsList: Array<DataCards>;
 
@@ -113,8 +108,30 @@ export interface CardsContextProps {
   loading: boolean;
 }
 
+export type BranchList = Array<{
+  name: string;
+  commit: {
+    sha: string;
+    url: string;
+  };
+  protected: boolean;
+}>;
+
+type Commit = {
+  commit: {
+    message: string;
+    author: {
+      name: string;
+      date: string;
+    };
+  };
+};
+
 export interface CardsDetailsContextProps {
-  cardDetail: DataCards;
-  getOneCard: (card: string) => void;
+  getCommits: (owner: string, repo: string, sha: string) => void;
+  loadingCommits: boolean;
+  commits: Array<Commit>;
+  cardDetail: BranchList;
+  getOneRepo: (owner: string, repo: string) => void;
   loading: boolean;
 }

@@ -118,6 +118,9 @@ export type BranchList = Array<{
 }>;
 
 export interface CardsDetailsContextProps {
+  getCommits: (owner: string, repo: string, sha: string) => void;
+  loadingCommits: boolean;
+  commits: Array<any>;
   cardDetail: BranchList;
   getOneRepo: (owner: string, repo: string) => void;
   loading: boolean;

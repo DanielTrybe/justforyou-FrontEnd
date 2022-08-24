@@ -14,6 +14,9 @@ const CardDetailsProvider: React.FC<{ children: React.ReactNode }> = ({
   const [cardDetail, setCardDetail] = useState({} as BranchList);
   const [loading, setLoading] = useState(false);
 
+  const [commits, setCommits] = useState([] as any);
+  const [loadingCommits, setLoadingCommits] = useState(false);
+
   const getOneRepo = async (owner: string, repo: string) => {
     setLoading(true);
     // busca um card
@@ -28,7 +31,29 @@ const CardDetailsProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const values = { cardDetail, getOneRepo, loading };
+  const getCommits = async (owner: string, repo: string, sha: string) => {
+    setLoadingCommits(true);
+    try {
+      const response = await api.get(
+        `repos/${owner}/${repo}/commits?sha=${sha}`
+      );
+
+      setCommits(response.data);
+    } catch {
+      console.log("erro ao buscar commits");
+    } finally {
+      setLoadingCommits(false);
+    }
+  };
+
+  const values = {
+    cardDetail,
+    getOneRepo,
+    loading,
+    getCommits,
+    loadingCommits,
+    commits,
+  };
 
   return (
     <CardsDetailsContext.Provider value={values}>

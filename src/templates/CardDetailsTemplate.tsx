@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useCardDetailsContext } from "hooks";
 import {
   Typography,
@@ -10,14 +10,42 @@ import {
   CardActions,
   Button,
 } from "@mui/material";
+import CommitsModal from "components/modal/CommitsModal";
 
 type BrachDetails = {
   owner: string;
   repo: string;
 };
 
+type BranchDetails = {
+  name: string;
+  commit: {
+    sha: string;
+    url: string;
+  };
+  protected: boolean;
+};
+
+type ModalInfo = {
+  owner: string;
+  repository: string;
+  sha: string;
+};
+
 function CardDetailsTemplate({ owner, repo }: BrachDetails) {
   const { getOneRepo, cardDetail, loading } = useCardDetailsContext();
+
+  const [openModal, setOpenModal] = useState(false);
+  const [modalInfo, setModalInfo] = useState({} as ModalInfo);
+
+  const openDetailsPopUp = (card: BranchDetails) => {
+    setModalInfo({
+      owner: owner,
+      repository: repo,
+      sha: card?.commit?.sha,
+    });
+    setOpenModal(true);
+  };
 
   useEffect(() => {
     getOneRepo(owner, repo);
@@ -52,7 +80,9 @@ function CardDetailsTemplate({ owner, repo }: BrachDetails) {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small">See commits</Button>
+                  <Button onClick={() => openDetailsPopUp(card)} size="small">
+                    See commits
+                  </Button>
                 </CardActions>
               </Card>
             ))
@@ -61,6 +91,11 @@ function CardDetailsTemplate({ owner, repo }: BrachDetails) {
           )}
         </Grid>
       )}
+      <CommitsModal
+        modalInfo={modalInfo}
+        setOpen={setOpenModal}
+        open={openModal}
+      />
     </Grid>
   );
 }

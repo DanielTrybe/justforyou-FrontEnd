@@ -24,7 +24,7 @@ function PopoverCustom({ card, children }: Card) {
         onMouseLeave={handlePopoverClose}
         style={{ textAlign: "center" }}
       >
-        Attack details
+        Details here
       </Typography>
       <Popover
         id="mouse-over-popover"

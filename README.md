@@ -16,22 +16,27 @@ Windows:
 
 1. Crie uma nova pasta em algum local que deseja.
 2. Abra o terminal do GitBash dentro da pasta criada, depois de entrar nela clique com botão direito, a opção vai aparecer.
-3. Execute dentro da pasta <code>git init</code>
-4. Copie esta linha: <code>git remote add origin https://github.com/DanielTrybe/justforyou-FrontEnd.git</code> e tecle enter, depois <code>git fetch</code>.
-5. Entre na pasta com <code>cd justforyou-FrontEnd</code>
-6. Execute <code>code .</code>
+3. Copie esta linha: <code>git clone https://github.com/DanielTrybe/justforyou-FrontEnd.git</code> e tecle enter.
+4. Entre na pasta com <code>cd justforyou-FrontEnd</code>
+5. Execute <code>git remote remove origin</code>
+6. Pegue o link do seu respositório criado no inicio!
+7. Execute <code>git remote add origin https://github.com/seurepositorioaqui</code>
+8. Execute <code>git add .</code> <code>git commit -m "novo projeto"</code> <code>git push origin main</code>
+9. Execute <code>code .</code>
 
 Linux:
 
 1. Abra o terminal do linux e navegue até a pasta que deseja.
-2. execute <code>mkdir novo_projeto</code>
-3. execute <code>cd novo_projeto</code>
-4. Execute dentro da pasta <code>git init</code>
-5. Copie esta linha: <code>git remote add origin https://github.com/DanielTrybe/justforyou-FrontEnd.git</code> e tecle enter, depois <code>git fetch</code>.
-6. Entre na pasta com <code>cd justforyou-FrontEnd</code>
-7. Execute <code>code .</code>
+2. Copie esta linha: <code>git clone https://github.com/DanielTrybe/justforyou-FrontEnd.git</code> e tecle enter.
+3. Entre na pasta com <code>cd justforyou-FrontEnd</code>
+4. Execute <code>git remote remove origin</code>
+5. Pegue o link do seu respositório criado no inicio!
+6. Execute <code>git remote add origin https://github.com/seurepositorioaqui</code>
+7. Execute <code>git add .</code> <code>git commit -m "novo projeto"</code> <code>git push origin main</code>
+8. Execute <code>code .</code>
 
 Com isto inicializamos um novo repositório, associamos o remoto com o link do repositório e atualizamos a pasta.
+Caso não deseje ter um repositório no seu GitHub, Apenas faça o clone.
 
 ## Segunda parte
 

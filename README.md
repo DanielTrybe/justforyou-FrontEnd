@@ -25,22 +25,23 @@ Nesta página é exibido todas as branches que o repositório escolhido contém 
 ### Estrutura
 
 O código contém a seguinte estrutura:
-<code>
-src**|
-\_\_\_**|-**mocks**
-**\_**|-**tests**
-**\_**|-components**|
-**\*\*\***\*\_\*\***\*\*\***\*|-items
-**\*\*\*\***\_\_\_**\*\*\*\***|-layouts
-**\*\*\*\***\_\_\_**\*\*\*\***|-modal
-**\_**|-hooks
-**\_**|-images
-**\_**|-pages**\_\_\_**|
-**\*\*\*\***\_\_\_**\*\*\*\***|-CardDetails
-**\*\*\*\***\_\_\_**\*\*\*\***|-Cards
-**\_**|-routes
-**\_**|-services\_**\_|
-**\*\*\*\***\_\***\*\*\*\*\***|-api
-**\*\*\*\***\_\_\_**\*\*\*\***|-context
-**\_**|-templates
-</code>
+
+```
+  src
+  |  |-__mocks__
+  |  |-__tests__
+  |  |-components
+  |    |-items
+  |    |-layouts
+  |    |-modal
+  |  |-hooks
+  |  |-images
+  |  |-pages
+  |    |-CardDetails
+  |    |-Cards
+  |  |-routes
+  |  |-services
+  |  |-api
+  |  |-context
+  |  |-templates
+```

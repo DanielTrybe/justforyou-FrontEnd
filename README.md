@@ -36,7 +36,7 @@ Linux:
 8. Execute <code>code .</code>
 
 Com isto inicializamos um novo repositório, associamos o remoto com o link do repositório e atualizamos a pasta.
-Caso não deseje ter um repositório no seu GitHub, Apenas faça o clone.
+Caso não deseje ter um repositório no seu GitHub, apenas faça o clone.
 
 ## Segunda parte
 

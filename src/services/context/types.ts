@@ -117,10 +117,20 @@ export type BranchList = Array<{
   protected: boolean;
 }>;
 
+type Commit = {
+  commit: {
+    message: string;
+    author: {
+      name: string;
+      date: string;
+    };
+  };
+};
+
 export interface CardsDetailsContextProps {
   getCommits: (owner: string, repo: string, sha: string) => void;
   loadingCommits: boolean;
-  commits: Array<any>;
+  commits: Array<Commit>;
   cardDetail: BranchList;
   getOneRepo: (owner: string, repo: string) => void;
   loading: boolean;

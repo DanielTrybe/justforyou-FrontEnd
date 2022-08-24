@@ -1,14 +1,7 @@
 import { useEffect } from "react";
 import { useCardDetailsContext } from "hooks";
-import {
-  Typography,
-  Grid,
-  Paper,
-  Box,
-  Backdrop,
-  Fade,
-  Modal,
-} from "@mui/material";
+import { Typography, Box, Backdrop, Fade, Modal } from "@mui/material";
+
 import { isValid, format } from "date-fns";
 
 type PopupDetails = {

@@ -27,21 +27,21 @@ Nesta página é exibido todas as branches que o repositório escolhido contém 
 O código contém a seguinte estrutura:
 
 ```
-  src__|
-  _____|-__mocks__
-  _____|-__tests__
-  _____|-components__|
-  ___________________|-items
-  ___________________|-layouts
-  ___________________|-modal
-  _____|-hooks
-  _____|-images
-  _____|-pages_______|
-  ___________________|-CardDetails
-  ___________________|-Cards
-  _____|-routes
-  _____|-services____|
-  ___________________|-api
-  ___________________|-context
-  _____|-templates
+  src
+  |  |-__mocks__
+  |  |-__tests__
+  |  |-components
+  |    |-items
+  |    |-layouts
+  |    |-modal
+  |  |-hooks
+  |  |-images
+  |  |-pages
+  |    |-CardDetails
+  |    |-Cards
+  |  |-routes
+  |  |-services
+  |  |-api
+  |  |-context
+  |  |-templates
 ```

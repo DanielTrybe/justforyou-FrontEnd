@@ -1,8 +1,17 @@
 import { useEffect } from "react";
 import { useCardDetailsContext } from "hooks";
-import { Typography, Box, Backdrop, Fade, Modal, Grid } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Backdrop,
+  Fade,
+  Modal,
+  Grid,
+  Tooltip,
+} from "@mui/material";
 import { useStyles } from "./style";
 import { isValid, format } from "date-fns";
+import AccordionCustom from "./AccordionCustom";
 
 type PopupDetails = {
   modalInfo: {
@@ -23,6 +32,7 @@ function CommitModal({ modalInfo, setOpen, open }: PopupDetails) {
       const { owner, repository, sha } = modalInfo;
       getCommits(owner, repository, sha);
     }
+    // eslint-disable-next-line
   }, [modalInfo?.sha]);
 
   const handleClose = () => setOpen(false);
@@ -52,28 +62,37 @@ function CommitModal({ modalInfo, setOpen, open }: PopupDetails) {
       ) : (
         <Fade in={open}>
           <Box className={classes.boxStyle}>
+            <Typography
+              className={classes.title}
+              variant="h5"
+              sx={{ mb: 2, mt: 1 }}
+            >
+              Commits
+            </Typography>
             {commits.length > 0 ? (
               commits.map((commit) => (
-                <>
-                  <Typography variant="h6" component="h2">
-                    {commit?.commit?.author?.name} -{" "}
-                    {validDate(commit?.commit?.author?.date)}
-                  </Typography>
-
-                  <Typography
-                    sx={{
-                      mb: 2,
-                    }}
-                  >
-                    {commit?.commit?.message}
-                  </Typography>
-                </>
+                <AccordionCustom
+                  title={commit?.commit?.author?.name}
+                  subTitle={validDate(commit?.commit?.author?.date)}
+                  comment={commit?.commit?.message}
+                />
               ))
             ) : (
               <Typography variant="h6" className={classes.notFoundText}>
                 Não encontrei nenhum commit para esta branch, tente novamente.
               </Typography>
             )}
+            <Grid sx={{ mt: 1, mr: 2 }} className={classes.gridBtn}>
+              <Tooltip title="Fechar" placement="left-start">
+                <button
+                  onClick={handleClose}
+                  type="button"
+                  className={classes.closeBtn}
+                >
+                  X
+                </button>
+              </Tooltip>
+            </Grid>
           </Box>
         </Fade>
       )}

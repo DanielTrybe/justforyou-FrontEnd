@@ -1,7 +1,8 @@
 import React from "react";
-import { Grid, Box, Button } from "@mui/material";
+import { Grid, Box, InputAdornment, IconButton } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 import { useStyles, CustomTextField } from "./style";
-import GitHubLogo from "images/github-logo.png";
+import JustLogo from "images/jfy-logo-apricot-1280.png";
 import { useGitHubContext } from "hooks";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
@@ -12,11 +13,9 @@ interface IFormInputs {
   searchTerm: string;
 }
 
-const schema = yup
-  .object({
-    searchTerm: yup.string().required("Por favor, digite um usuário válido"),
-  })
-  .required();
+const schema = yup.object({
+  searchTerm: yup.string().required("Por favor, digite um usuário válido."),
+});
 
 export default function Header() {
   const history = useLocation();
@@ -52,38 +51,46 @@ export default function Header() {
       >
         <img
           data-testid="header-logo"
-          src={GitHubLogo}
+          src={JustLogo}
           width="100px"
           alt="logo"
+          onClick={() => navigate("/")}
         />
       </Box>
+
       <Controller
         control={control}
-        rules={{
-          required: true,
-        }}
         render={({ field: { onChange, value } }) => (
           <CustomTextField
-            label="Search for a user"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton onClick={handleSubmit(onSubmit)}>
+                    <SearchIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+            label="Search for a user from GitHub"
             id="outlined-start-adornment"
-            sx={{ m: 1, width: "100%" }}
+            sx={{
+              m: 1,
+            }}
             value={value}
             onChange={onChange}
             data-testid="header-input"
             error={errors?.searchTerm ? true : false}
-            helperText={errors?.searchTerm && errors?.searchTerm?.message}
+            helperText={
+              errors?.searchTerm && (
+                <span style={{ position: "absolute" }}>
+                  {errors?.searchTerm?.message}
+                </span>
+              )
+            }
           />
         )}
         name="searchTerm"
       />
-
-      <Button
-        type="submit"
-        data-testid="header-btn"
-        onClick={handleSubmit(onSubmit)}
-      >
-        Buscar
-      </Button>
     </Grid>
   );
 }

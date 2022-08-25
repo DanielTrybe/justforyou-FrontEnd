@@ -24,7 +24,7 @@ function PopoverCustom({ card, children }: Card) {
         onMouseLeave={handlePopoverClose}
         style={{ textAlign: "center" }}
       >
-        Details here
+        More details
       </Typography>
       <Popover
         id="mouse-over-popover"

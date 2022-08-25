@@ -4,17 +4,18 @@ import {
   Paper,
   Card,
   CardHeader,
-  CardMedia,
+  Tooltip,
   CardContent,
   IconButton,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import InfoIcon from "@mui/icons-material/Info";
-
 import { Card as CardType } from "services/context/types";
 import { PopoverCustom } from "components/Items";
+import { useStyles } from "./style";
 
 function CompactCard({ card }: CardType) {
+  const classes = useStyles();
   const navigate = useNavigate();
 
   const content = (
@@ -35,47 +36,41 @@ function CompactCard({ card }: CardType) {
 
   return (
     <Paper elevation={2}>
-      <Card
-        sx={{
-          maxWidth: 345,
-          minWidth: 345,
-          minHeight: 200,
-          maxHeight: 200,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-        }}
-      >
+      <Card className={classes.card}>
         <CardHeader
           action={
             <IconButton
               onClick={() => navigate(`/${card?.owner?.login}/${card?.name}`)}
               aria-label="settings"
             >
-              <InfoIcon />
+              <Tooltip title="See branch Details" placement="left-start">
+                <InfoIcon />
+              </Tooltip>
             </IconButton>
           }
           title={card.name}
-          sx={{ maxHeight: 200, overflow: "hidden" }}
-          // subheader={card.name}
+          className={classes.cardHeader}
         />
-        {/* <CardMedia
-          component="img"
-          height="475"
-          image={card.images.small}
-          alt=""
-        /> */}
+
         <Grid>
           <CardContent>
-            <Typography align="center" variant="body2" color="text.secondary">
+            <button className={classes.btnLinks}>
               <a
+                href={`https://github.com/${card?.owner?.login}/${card?.name}`}
                 target="_blank"
                 rel="noreferrer"
-                href={`https://github.com/${card?.owner?.login}/${card?.name}`}
+                className={classes.link}
               >
-                Click here to navigate to GitHub page
+                Navigate to GitHub page
               </a>
-            </Typography>
+            </button>
+
+            <button
+              onClick={() => navigate(`/${card?.owner?.login}/${card?.name}`)}
+              className={classes.btnLinks}
+            >
+              Navigate to branch details page
+            </button>
           </CardContent>
 
           <Grid style={{ textAlign: "center", marginBottom: 10 }}>

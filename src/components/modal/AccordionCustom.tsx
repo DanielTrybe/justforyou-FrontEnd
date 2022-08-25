@@ -4,6 +4,7 @@ import {
   AccordionDetails,
   AccordionSummary,
   Typography,
+  Grid,
 } from "@mui/material";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -23,7 +24,7 @@ function AccordionCustom({ title, subTitle, comment }: AccordionProps) {
     };
 
   return (
-    <div>
+    <Grid sx={{ mb: 1, width: " 100%" }}>
       <Accordion
         expanded={expanded === "panel1"}
         onChange={handleChange("panel1")}
@@ -32,37 +33,28 @@ function AccordionCustom({ title, subTitle, comment }: AccordionProps) {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
+          style={{
+            border: "1px solid black",
+            borderTopLeftRadius: "10px",
+            borderTopRightRadius: "10px",
+            backgroundColor: "#EAEAEA",
+          }}
         >
-          <Typography sx={{ width: "33%", flexShrink: 0 }}>{title}</Typography>
+          <Typography sx={{ mr: 1 }}>{title}</Typography>
           <Typography sx={{ color: "text.secondary" }}>{subTitle}</Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails
+          style={{
+            border: "1px solid black",
+            borderTop: "none",
+            borderBottomLeftRadius: "10px",
+            borderBottomRightRadius: "10px",
+          }}
+        >
           <Typography>{comment}</Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion
-        expanded={expanded === "panel2"}
-        onChange={handleChange("panel2")}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2bh-content"
-          id="panel2bh-header"
-        >
-          <Typography sx={{ width: "33%", flexShrink: 0 }}>Users</Typography>
-          <Typography sx={{ color: "text.secondary" }}>
-            You are currently not an owner
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Donec placerat, lectus sed mattis semper, neque lectus feugiat
-            lectus, varius pulvinar diam eros in elit. Pellentesque convallis
-            laoreet laoreet.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-    </div>
+    </Grid>
   );
 }
 

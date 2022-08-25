@@ -3,12 +3,9 @@ import { useCardDetailsContext } from "hooks";
 import {
   Typography,
   Grid,
-  Paper,
-  Box,
   Card,
   CardContent,
   CardActions,
-  Button,
 } from "@mui/material";
 import CommitsModal from "components/modal/CommitsModal";
 import SkeletonCustom from "components/skeleton/SkeletonCustom";
@@ -52,52 +49,62 @@ function CardDetailsTemplate({ owner, repo }: BrachDetails) {
 
   useEffect(() => {
     getOneRepo(owner, repo);
+    // eslint-disable-next-line
   }, []);
   // .
   return (
-    <Grid>
-      {loading ? (
-        <SkeletonCustom
-          length={12}
-          childClass={classes.childClass}
-          fatherClass={classes.fatherClass}
+    <>
+      <Typography variant="h5" className={classes.title}>
+        Branches
+      </Typography>
+      <Grid>
+        {loading ? (
+          <SkeletonCustom
+            length={12}
+            childClass={classes.childClass}
+            fatherClass={classes.fatherClass}
+          />
+        ) : (
+          <Grid container className={classes.fatherClass}>
+            {cardDetail.length > 0 ? (
+              cardDetail.map((card) => (
+                <Card className={classes.childClass} variant="outlined">
+                  <CardContent>
+                    <Typography variant="h5" component="div">
+                      {card?.name}
+                    </Typography>
+                    <Typography
+                      color="text.secondary"
+                      style={{ wordBreak: "break-all" }}
+                    >
+                      Branch ID: {card?.commit?.sha}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <button
+                      type="button"
+                      onClick={() => openDetailsPopUp(card)}
+                      className={classes.commitBtn}
+                    >
+                      See commits
+                    </button>
+                  </CardActions>
+                </Card>
+              ))
+            ) : (
+              <Typography variant="h6" className={classes.notFoundText}>
+                Não encontrei nenhuma branch para este usuário, tente novamente.
+              </Typography>
+            )}
+          </Grid>
+        )}
+        <CommitsModal
+          modalInfo={modalInfo}
+          setOpen={setOpenModal}
+          open={openModal}
         />
-      ) : (
-        <Grid container className={classes.fatherClass}>
-          {cardDetail.length > 0 ? (
-            cardDetail.map((card) => (
-              <Card className={classes.childClass} variant="outlined">
-                <CardContent>
-                  <Typography variant="h5" component="div">
-                    {card?.name}
-                  </Typography>
-                  <Typography
-                    color="text.secondary"
-                    style={{ wordBreak: "break-all" }}
-                  >
-                    Branch ID: {card?.commit?.sha}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button onClick={() => openDetailsPopUp(card)} size="small">
-                    See commits
-                  </Button>
-                </CardActions>
-              </Card>
-            ))
-          ) : (
-            <Typography variant="h6" className={classes.notFoundText}>
-              Não encontrei nenhuma branch para este usuário, tente novamente.
-            </Typography>
-          )}
-        </Grid>
-      )}
-      <CommitsModal
-        modalInfo={modalInfo}
-        setOpen={setOpenModal}
-        open={openModal}
-      />
-    </Grid>
+      </Grid>
+    </>
   );
 }
 

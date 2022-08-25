@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
+  title: { textAlign: "center", borderBottom: "1px solid #EAEAEA" },
   cards: {
     display: "flex",
     flexWrap: "wrap",

@@ -1,16 +1,21 @@
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
+  title: {
+    textAlign: "center",
+    borderBottom: "1px solid #EAEAEA",
+    width: "100%",
+  },
   boxStyle: {
     position: "absolute" as "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: "40%",
-    height: "80%",
+    maxHeight: "80%",
     overflow: "scroll",
     background: "white",
-    border: "2px solid #000",
+    border: "1px solid #EAEAEA",
     padding: 5,
     display: "flex",
     flexDirection: "column",
@@ -26,6 +31,27 @@ const useStyles = makeStyles({
   "@media (max-width: 400px)": {
     boxStyle: {
       width: 320,
+    },
+  },
+  gridBtn: {
+    position: "fixed",
+    width: "100%",
+    display: "flex",
+    justifyContent: "flex-end",
+  },
+  closeBtn: {
+    width: 30,
+    height: 30,
+
+    background: "#F9C29D",
+    border: "none",
+    borderRadius: "50%",
+    position: "relative",
+    "&:hover": {
+      background: "#BEC8CE",
+    },
+    "&:active": {
+      background: "gray",
     },
   },
 });

@@ -54,7 +54,11 @@ function CardDetailsTemplate({ owner, repo }: BrachDetails) {
   // .
   return (
     <>
-      <Typography variant="h5" className={classes.title}>
+      <Typography
+        variant="h5"
+        className={classes.title}
+        date-testid="branchtitle"
+      >
         Branches
       </Typography>
       <Grid>

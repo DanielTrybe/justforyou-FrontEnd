@@ -3,10 +3,15 @@ import { Grid } from "@mui/material";
 
 import { CompactCard } from "components/Items";
 
-function CardShow({ card }: any) {
+type CardProps = {
+  index: number;
+  card: any;
+};
+
+function CardShow({ card, index }: CardProps) {
   return (
     <Grid>
-      <CompactCard card={card} />
+      <CompactCard card={card} index={index} />
     </Grid>
   );
 }

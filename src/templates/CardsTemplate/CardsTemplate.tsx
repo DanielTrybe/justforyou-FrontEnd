@@ -23,7 +23,7 @@ function CardsTemplate() {
         ) : cardsList?.length > 0 ? (
           cardsList.map((card, index) => (
             <Grid key={index}>
-              <CardShow card={card} />
+              <CardShow card={card} index={index} />
             </Grid>
           ))
         ) : (

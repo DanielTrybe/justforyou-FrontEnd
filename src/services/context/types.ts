@@ -96,6 +96,7 @@ export type DataCards = {
 export type Card = {
   card: DataCards;
   children?: JSX.Element;
+  index?: number;
 };
 
 export interface CardsContextProps {

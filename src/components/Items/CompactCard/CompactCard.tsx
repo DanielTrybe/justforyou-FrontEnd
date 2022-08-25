@@ -14,7 +14,7 @@ import { Card as CardType } from "services/context/types";
 import { PopoverCustom } from "components/Items";
 import { useStyles } from "./style";
 
-function CompactCard({ card }: CardType) {
+function CompactCard({ card, index }: CardType) {
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -36,48 +36,54 @@ function CompactCard({ card }: CardType) {
 
   return (
     <Paper elevation={2}>
-      <Card className={classes.card}>
-        <CardHeader
-          action={
-            <IconButton
-              onClick={() => navigate(`/${card?.owner?.login}/${card?.name}`)}
-              aria-label="settings"
-            >
-              <Tooltip title="See branch Details" placement="left-start">
-                <InfoIcon />
-              </Tooltip>
-            </IconButton>
-          }
-          title={card.name}
-          className={classes.cardHeader}
-        />
-
-        <Grid>
-          <CardContent>
-            <button className={classes.btnLinks}>
-              <a
-                href={`https://github.com/${card?.owner?.login}/${card?.name}`}
-                target="_blank"
-                rel="noreferrer"
-                className={classes.link}
+      <div data-testid={`card-${index}-card`}>
+        <Card className={classes.card}>
+          <CardHeader
+            action={
+              <IconButton
+                onClick={() => navigate(`/${card?.owner?.login}/${card?.name}`)}
+                aria-label="settings"
               >
-                Navigate to GitHub page
-              </a>
-            </button>
+                <Tooltip title="See branch Details" placement="left-start">
+                  <InfoIcon />
+                </Tooltip>
+              </IconButton>
+            }
+            title={<span data-testid={`card-${index}-name`}>{card.name}</span>}
+            className={classes.cardHeader}
+          />
 
-            <button
-              onClick={() => navigate(`/${card?.owner?.login}/${card?.name}`)}
-              className={classes.btnLinks}
-            >
-              Navigate to branch details page
-            </button>
-          </CardContent>
+          <Grid>
+            <CardContent>
+              <button className={classes.btnLinks}>
+                <a
+                  href={`https://github.com/${card?.owner?.login}/${card?.name}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={classes.link}
+                  data-testid={`card-${index}-githubBtn`}
+                >
+                  Navigate to GitHub page
+                </a>
+              </button>
 
-          <Grid style={{ textAlign: "center", marginBottom: 10 }}>
-            <PopoverCustom card={card} children={content} />
+              <button
+                onClick={() => navigate(`/${card?.owner?.login}/${card?.name}`)}
+                className={classes.btnLinks}
+                data-testid={`card-${index}-detailBranchBtn`}
+              >
+                Navigate to branch details page
+              </button>
+            </CardContent>
+
+            <Grid style={{ textAlign: "center", marginBottom: 10 }}>
+              <span data-testid={`card-${index}-pop`}>
+                <PopoverCustom card={card} children={content} />
+              </span>
+            </Grid>
           </Grid>
-        </Grid>
-      </Card>
+        </Card>
+      </div>
     </Paper>
   );
 }

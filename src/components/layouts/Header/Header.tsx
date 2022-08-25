@@ -65,12 +65,16 @@ export default function Header() {
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton onClick={handleSubmit(onSubmit)}>
+                  <IconButton
+                    data-testid="header-btn"
+                    onClick={handleSubmit(onSubmit)}
+                  >
                     <SearchIcon />
                   </IconButton>
                 </InputAdornment>
               ),
             }}
+            inputProps={{ "data-testid": "header-input" }}
             label="Search for a user from GitHub"
             id="outlined-start-adornment"
             sx={{
@@ -78,7 +82,6 @@ export default function Header() {
             }}
             value={value}
             onChange={onChange}
-            data-testid="header-input"
             error={errors?.searchTerm ? true : false}
             helperText={
               errors?.searchTerm && (

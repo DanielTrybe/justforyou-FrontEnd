@@ -10,18 +10,17 @@ const GitHubProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [cardsList, setCardsList] = useState({} as Array<DataCards>);
-  const [card, setCard] = useState({} as any);
-  const [search, setSearch] = useState("DanielTrybe" as string);
+  const [search, setSearch] = useState("DanielTrybe");
   const [loading, setLoading] = useState(false);
 
   const getUserGitHub = async () => {
     setLoading(true);
-    // busca todas cardas com filtros
+    // busca todaos repos
     try {
       const response = await api.get(`users/${search}/repos`);
       setCardsList(response.data);
     } catch {
-      console.log("erro ao buscar usuário");
+      setCardsList([]);
     } finally {
       setLoading(false);
     }
@@ -29,13 +28,13 @@ const GitHubProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     getUserGitHub();
-  }, []);
+  }, [search]);
 
   const values = {
     cardsList,
     search,
     setSearch,
-    card,
+
     getUserGitHub,
     loading,
   };

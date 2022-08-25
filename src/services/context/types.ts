@@ -96,6 +96,7 @@ export type DataCards = {
 export type Card = {
   card: DataCards;
   children?: JSX.Element;
+  index?: number;
 };
 
 export interface CardsContextProps {
@@ -103,7 +104,7 @@ export interface CardsContextProps {
 
   search: string;
   setSearch: (value: string) => void;
-  card: any;
+
   getUserGitHub: () => void;
   loading: boolean;
 }

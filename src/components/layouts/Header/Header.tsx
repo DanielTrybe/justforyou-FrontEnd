@@ -1,22 +1,45 @@
 import React from "react";
-import { Grid, Box, Button } from "@mui/material";
+import { Grid, Box, InputAdornment, IconButton } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 import { useStyles, CustomTextField } from "./style";
-import GitHubLogo from "images/github-logo.png";
+import JustLogo from "images/jfy-logo-apricot-1280.png";
 import { useGitHubContext } from "hooks";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+interface IFormInputs {
+  searchTerm: string;
+}
+
+const schema = yup.object({
+  searchTerm: yup.string().required("Por favor, digite um usuário válido."),
+});
 
 export default function Header() {
   const history = useLocation();
   const navigate = useNavigate();
-  console.log(history);
-  const { search, setSearch, getUserGitHub } = useGitHubContext();
+
+  const { setSearch } = useGitHubContext();
   const classes = useStyles();
 
-  const searchUser = () => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInputs>({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      searchTerm: "DanielTrybe",
+    },
+  });
+
+  const onSubmit = (formData: IFormInputs) => {
+    setSearch(formData.searchTerm);
     if (history.pathname !== "/") {
       navigate("/");
     }
-    getUserGitHub();
   };
 
   return (
@@ -28,22 +51,49 @@ export default function Header() {
       >
         <img
           data-testid="header-logo"
-          src={GitHubLogo}
+          src={JustLogo}
           width="100px"
           alt="logo"
+          onClick={() => navigate("/")}
         />
       </Box>
-      <CustomTextField
-        label="Search for a user"
-        id="outlined-start-adornment"
-        sx={{ m: 1, width: "100%" }}
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        data-testid="header-input"
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, value } }) => (
+          <CustomTextField
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    data-testid="header-btn"
+                    onClick={handleSubmit(onSubmit)}
+                  >
+                    <SearchIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+            inputProps={{ "data-testid": "header-input" }}
+            label="Search for a user from GitHub"
+            id="outlined-start-adornment"
+            sx={{
+              m: 1,
+            }}
+            value={value}
+            onChange={onChange}
+            error={errors?.searchTerm ? true : false}
+            helperText={
+              errors?.searchTerm && (
+                <span style={{ position: "absolute" }}>
+                  {errors?.searchTerm?.message}
+                </span>
+              )
+            }
+          />
+        )}
+        name="searchTerm"
       />
-      <Button data-testid="header-btn" onClick={() => searchUser()}>
-        Buscar
-      </Button>
     </Grid>
   );
 }

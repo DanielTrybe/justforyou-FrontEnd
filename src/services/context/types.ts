@@ -103,7 +103,7 @@ export interface CardsContextProps {
 
   search: string;
   setSearch: (value: string) => void;
-  card: any;
+
   getUserGitHub: () => void;
   loading: boolean;
 }

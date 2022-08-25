@@ -4,19 +4,43 @@ import { useStyles, CustomTextField } from "./style";
 import GitHubLogo from "images/github-logo.png";
 import { useGitHubContext } from "hooks";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+interface IFormInputs {
+  searchTerm: string;
+}
+
+const schema = yup
+  .object({
+    searchTerm: yup.string().required("Por favor, digite um usuário válido"),
+  })
+  .required();
 
 export default function Header() {
   const history = useLocation();
   const navigate = useNavigate();
-  console.log(history);
-  const { search, setSearch, getUserGitHub } = useGitHubContext();
+
+  const { setSearch } = useGitHubContext();
   const classes = useStyles();
 
-  const searchUser = () => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInputs>({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      searchTerm: "DanielTrybe",
+    },
+  });
+
+  const onSubmit = (formData: IFormInputs) => {
+    setSearch(formData.searchTerm);
     if (history.pathname !== "/") {
       navigate("/");
     }
-    getUserGitHub();
   };
 
   return (
@@ -33,15 +57,31 @@ export default function Header() {
           alt="logo"
         />
       </Box>
-      <CustomTextField
-        label="Search for a user"
-        id="outlined-start-adornment"
-        sx={{ m: 1, width: "100%" }}
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        data-testid="header-input"
+      <Controller
+        control={control}
+        rules={{
+          required: true,
+        }}
+        render={({ field: { onChange, value } }) => (
+          <CustomTextField
+            label="Search for a user"
+            id="outlined-start-adornment"
+            sx={{ m: 1, width: "100%" }}
+            value={value}
+            onChange={onChange}
+            data-testid="header-input"
+            error={errors?.searchTerm ? true : false}
+            helperText={errors?.searchTerm && errors?.searchTerm?.message}
+          />
+        )}
+        name="searchTerm"
       />
-      <Button data-testid="header-btn" onClick={() => searchUser()}>
+
+      <Button
+        type="submit"
+        data-testid="header-btn"
+        onClick={handleSubmit(onSubmit)}
+      >
         Buscar
       </Button>
     </Grid>

@@ -20,7 +20,7 @@ const GitHubProvider: React.FC<{ children: React.ReactNode }> = ({
       const response = await api.get(`users/${search}/repos`);
       setCardsList(response.data);
     } catch {
-      console.log("erro ao buscar usuário");
+      setCardsList([]);
     } finally {
       setLoading(false);
     }

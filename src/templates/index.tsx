@@ -1,2 +1,2 @@
-export { default as CardsTemplate } from "./CardsTemplate";
-export { default as CardDetailsTemplate } from "./CardDetailsTemplate";
+export { default as CardsTemplate } from "./CardsTemplate/CardsTemplate";
+export { default as CardDetailsTemplate } from "./CardDetailsTemplate/CardDetailsTemplate";

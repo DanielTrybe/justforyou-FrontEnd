@@ -11,7 +11,7 @@ export const CardsDetailsContext = createContext(
 const CardDetailsProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [cardDetail, setCardDetail] = useState({} as BranchList);
+  const [cardDetail, setCardDetail] = useState([] as BranchList);
   const [loading, setLoading] = useState(false);
 
   const [commits, setCommits] = useState([] as any);
@@ -25,7 +25,7 @@ const CardDetailsProvider: React.FC<{ children: React.ReactNode }> = ({
 
       setCardDetail(response.data);
     } catch {
-      console.log("erro ao buscar carta");
+      setCardDetail([]);
     } finally {
       setLoading(false);
     }
@@ -40,7 +40,7 @@ const CardDetailsProvider: React.FC<{ children: React.ReactNode }> = ({
 
       setCommits(response.data);
     } catch {
-      console.log("erro ao buscar commits");
+      setCommits([]);
     } finally {
       setLoadingCommits(false);
     }

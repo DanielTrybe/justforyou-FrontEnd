@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useCardDetailsContext } from "hooks";
-import { Typography, Box, Backdrop, Fade, Modal } from "@mui/material";
-
+import { Typography, Box, Backdrop, Fade, Modal, Grid } from "@mui/material";
+import { useStyles } from "./style";
 import { isValid, format } from "date-fns";
 
 type PopupDetails = {
@@ -14,27 +14,15 @@ type PopupDetails = {
   open: boolean;
 };
 
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 320,
-  height: "80%",
-  overflow: "scroll",
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 2,
-};
-
 function CommitModal({ modalInfo, setOpen, open }: PopupDetails) {
+  const classes = useStyles();
   const { getCommits, commits, loadingCommits } = useCardDetailsContext();
-  console.log(commits);
 
   useEffect(() => {
-    const { owner, repository, sha } = modalInfo;
-    getCommits(owner, repository, sha);
+    if (open) {
+      const { owner, repository, sha } = modalInfo;
+      getCommits(owner, repository, sha);
+    }
   }, [modalInfo?.sha]);
 
   const handleClose = () => setOpen(false);
@@ -53,34 +41,42 @@ function CommitModal({ modalInfo, setOpen, open }: PopupDetails) {
       open={open}
       onClose={handleClose}
       closeAfterTransition
+      keepMounted={false}
       BackdropComponent={Backdrop}
       BackdropProps={{
         timeout: 500,
       }}
     >
-      <Fade in={open}>
-        <Box sx={style}>
-          {commits.length > 0 ? (
-            commits.map((commit) => (
-              <>
-                <Typography
-                  id="transition-modal-title"
-                  variant="h6"
-                  component="h2"
-                >
-                  {commit?.commit?.author?.name} -{" "}
-                  {validDate(commit?.commit?.author?.date)}
-                </Typography>
-                <Typography id="transition-modal-description" sx={{ mb: 2 }}>
-                  {commit?.commit?.message}
-                </Typography>
-              </>
-            ))
-          ) : (
-            <p>deu ruim</p>
-          )}
-        </Box>
-      </Fade>
+      {loadingCommits ? (
+        <p>carregando</p>
+      ) : (
+        <Fade in={open}>
+          <Box className={classes.boxStyle}>
+            {commits.length > 0 ? (
+              commits.map((commit) => (
+                <>
+                  <Typography variant="h6" component="h2">
+                    {commit?.commit?.author?.name} -{" "}
+                    {validDate(commit?.commit?.author?.date)}
+                  </Typography>
+
+                  <Typography
+                    sx={{
+                      mb: 2,
+                    }}
+                  >
+                    {commit?.commit?.message}
+                  </Typography>
+                </>
+              ))
+            ) : (
+              <Typography variant="h6" className={classes.notFoundText}>
+                Não encontrei nenhum commit para esta branch, tente novamente.
+              </Typography>
+            )}
+          </Box>
+        </Fade>
+      )}
     </Modal>
   );
 }

@@ -11,6 +11,8 @@ import {
   Button,
 } from "@mui/material";
 import CommitsModal from "components/modal/CommitsModal";
+import SkeletonCustom from "components/skeleton/SkeletonCustom";
+import { useStyles } from "./style";
 
 type BrachDetails = {
   owner: string;
@@ -33,6 +35,7 @@ type ModalInfo = {
 };
 
 function CardDetailsTemplate({ owner, repo }: BrachDetails) {
+  const classes = useStyles();
   const { getOneRepo, cardDetail, loading } = useCardDetailsContext();
 
   const [openModal, setOpenModal] = useState(false);
@@ -54,20 +57,16 @@ function CardDetailsTemplate({ owner, repo }: BrachDetails) {
   return (
     <Grid>
       {loading ? (
-        <p>carregando</p>
+        <SkeletonCustom
+          length={12}
+          childClass={classes.childClass}
+          fatherClass={classes.fatherClass}
+        />
       ) : (
-        <Grid
-          container
-          direction="row"
-          justifyContent="flex-start"
-          style={{ marginTop: 15 }}
-        >
+        <Grid container className={classes.fatherClass}>
           {cardDetail.length > 0 ? (
             cardDetail.map((card) => (
-              <Card
-                sx={{ margin: 1, maxWidth: 320, minWidth: 320 }}
-                variant="outlined"
-              >
+              <Card className={classes.childClass} variant="outlined">
                 <CardContent>
                   <Typography variant="h5" component="div">
                     {card?.name}
@@ -87,7 +86,9 @@ function CardDetailsTemplate({ owner, repo }: BrachDetails) {
               </Card>
             ))
           ) : (
-            <p>não achei</p>
+            <Typography variant="h6" className={classes.notFoundText}>
+              Não encontrei nenhuma branch para este usuário, tente novamente.
+            </Typography>
           )}
         </Grid>
       )}

@@ -65,7 +65,7 @@ Caso não deseje ter um repositório no seu GitHub, apenas faça o clone.
 
 Consiste em listar os respositórios de um usuario que foi pesquisado no campo de busca, nesta página será exibido em cards cada repositorio que a pessoa tem como público.
 
-<code><img height="100" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9b9fa210-4b87-47c5-9936-d9dcbf21718f/dfc2fcq-b4aad24d-71bd-499c-9446-2a56874625b6.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzliOWZhMjEwLTRiODctNDdjNS05OTM2LWQ5ZGNiZjIxNzE4ZlwvZGZjMmZjcS1iNGFhZDI0ZC03MWJkLTQ5OWMtOTQ0Ni0yYTU2ODc0NjI1YjYuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.AR22uwo7yhHL6WNRY1eCJ4aJU3ml7ImD2cJTVHTjNeg"></code>
+<code><img height="100" src="https://drive.google.com/file/d/1ibbAIDoZDEUCZeyvsDKnArEqgnJFMPHs/view?usp=sharing"></code>
 
 ## Detalhes do repositório
 

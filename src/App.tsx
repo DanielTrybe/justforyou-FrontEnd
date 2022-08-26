@@ -1,21 +1,14 @@
 import React from "react";
 import "./App.css";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-
-import { MainLayout } from "components/layouts";
-import { CardsPage, CardDetails } from "pages";
+import { BrowserRouter } from "react-router-dom";
 import GitHubProvider from "services/context/GitHubList";
+import AppRoutes from "routes/routes";
 
 function App() {
   return (
     <BrowserRouter basename="justforyou-FrontEnd">
       <GitHubProvider>
-        <Routes>
-          <Route path="/" element={<MainLayout />}>
-            <Route path="" element={<CardsPage />} />
-            <Route path="/:owner/:repo" element={<CardDetails />} />
-          </Route>
-        </Routes>
+        <AppRoutes />
       </GitHubProvider>
     </BrowserRouter>
   );

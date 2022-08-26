@@ -71,8 +71,12 @@ function CardDetailsTemplate({ owner, repo }: BrachDetails) {
         ) : (
           <Grid container className={classes.fatherClass}>
             {cardDetail.length > 0 ? (
-              cardDetail.map((card) => (
-                <Card className={classes.childClass} variant="outlined">
+              cardDetail.map((card, index) => (
+                <Card
+                  key={index}
+                  className={classes.childClass}
+                  variant="outlined"
+                >
                   <CardContent>
                     <Typography variant="h5" component="div">
                       {card?.name}

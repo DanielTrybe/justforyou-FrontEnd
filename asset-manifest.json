@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/justforyou-FrontEnd/static/css/main.073c9b0a.css",
-    "main.js": "/justforyou-FrontEnd/static/js/main.b1e2c4d9.js",
+    "main.js": "/justforyou-FrontEnd/static/js/main.853aeaf3.js",
     "static/js/787.28cb0dcd.chunk.js": "/justforyou-FrontEnd/static/js/787.28cb0dcd.chunk.js",
     "static/media/jfy-logo-apricot-1280.png": "/justforyou-FrontEnd/static/media/jfy-logo-apricot-1280.2810bfb63a3f9e2b6b2e.png",
     "index.html": "/justforyou-FrontEnd/index.html",
     "main.073c9b0a.css.map": "/justforyou-FrontEnd/static/css/main.073c9b0a.css.map",
-    "main.b1e2c4d9.js.map": "/justforyou-FrontEnd/static/js/main.b1e2c4d9.js.map",
+    "main.853aeaf3.js.map": "/justforyou-FrontEnd/static/js/main.853aeaf3.js.map",
     "787.28cb0dcd.chunk.js.map": "/justforyou-FrontEnd/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.b1e2c4d9.js"
+    "static/js/main.853aeaf3.js"
   ]
 }

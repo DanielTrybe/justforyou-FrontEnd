@@ -71,6 +71,14 @@ Consiste em listar os respositórios de um usuario que foi pesquisado no campo d
 
 Nesta página é exibido todas as branches que o repositório escolhido contém e ao clicar em "See commits" vai abrir um Pop Up com o nome, data e o commit que foi feito.
 
+![2](https://user-images.githubusercontent.com/78499630/186930758-88b22c77-2f24-4282-a978-43807481ff42.gif)
+
+## Commits do repositório
+
+Um popup é aberto para exibir todos os commits feitos nesta branch.
+
+![3](https://user-images.githubusercontent.com/78499630/186931122-7761c2d4-658c-417d-9bc0-bff55910be42.gif)
+
 ### Estrutura
 
 O código contém a seguinte estrutura:

@@ -8,7 +8,7 @@ import GitHubProvider from "services/context/GitHubList";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="justforyou-FrontEnd">
       <GitHubProvider>
         <Routes>
           <Route path="/" element={<MainLayout />}>

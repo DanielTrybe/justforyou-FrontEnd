@@ -15,12 +15,13 @@ Quer ver agora o projeto funcionando? <a href="https://danieltrybe.github.io/jus
 
 # Iniciando
 
-1. VS code instalado, caso não tenha <a href="https://code.visualstudio.com/download">clique aqui para instalar</a>
-2. Tenha o git instalado em sua máquina, caso não tenha <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">verifique aqui como instalar</a>
-3. Em seu Github crie um repositório vazio.
+1. VS code instalado, caso não tenha <a href="https://code.visualstudio.com/download">clique aqui para instalar</a> .
+2. Tenha o git instalado em sua máquina, caso não tenha <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">clique aqui para instalar</a> .
+3. Em seu Github crie um repositório vazio, caso não saiba <a href="https://docs.github.com/pt/get-started/quickstart/create-a-repo">clique aqui para criar</a> .
 
 ## Exemplo de como usar
 
+Caso não deseje ter um repositório no seu GitHub, apenas faça o clone.
 Criando uma nova pasta do projeto:
 
 Windows:
@@ -47,7 +48,6 @@ Linux:
 8. Execute <code>code .</code>
 
 Com isto inicializamos um novo repositório, associamos o remoto com o link do repositório e atualizamos a pasta.
-Caso não deseje ter um repositório no seu GitHub, apenas faça o clone.
 
 ## Segunda parte
 
@@ -63,7 +63,7 @@ Caso não deseje ter um repositório no seu GitHub, apenas faça o clone.
 
 ## Página inicial
 
-Consiste em listar os respositórios de um usuario que foi pesquisado no campo de busca, nesta página será exibido em cards cada repositorio que a pessoa tem como público.
+Consiste em listar os respositórios de um usuário que foi pesquisado no campo de busca, nesta página será exibido em cards cada repositório que a pessoa tem como público.
 
 ![1](https://user-images.githubusercontent.com/78499630/186929839-020f5d7f-583e-48f7-80fc-5399cbc2fd07.gif)
 

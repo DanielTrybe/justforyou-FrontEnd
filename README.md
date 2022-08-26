@@ -65,7 +65,7 @@ Caso não deseje ter um repositório no seu GitHub, apenas faça o clone.
 
 Consiste em listar os respositórios de um usuario que foi pesquisado no campo de busca, nesta página será exibido em cards cada repositorio que a pessoa tem como público.
 
-<img height="100" src="https://drive.google.com/file/d/1ibbAIDoZDEUCZeyvsDKnArEqgnJFMPHs/preview">
+<iframe src="https://drive.google.com/file/d/1ibbAIDoZDEUCZeyvsDKnArEqgnJFMPHs/preview" width="640" height="480" allow="autoplay"></iframe>
 
 ## Detalhes do repositório
 

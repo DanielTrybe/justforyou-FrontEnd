@@ -1,5 +1,16 @@
 # Projeto justforyou-FrontEnd
 
+Quer ver agora o projeto funcionando? <a href="https://danieltrybe.github.io/justforyou-FrontEnd/" target="_blank">Clique aqui!</a>
+
+## Principais tecnologias utilizadas
+
+<code><img height="30" src="https://bognarjunior.files.wordpress.com/2018/09/typescript.png"></code>
+<code><img height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png"></code>
+<code><img height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png"></code>
+<code><img height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/git/git.png"></code>
+<code><img height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/terminal/terminal.png"></code>
+<code><img height="30" src="https://v4.mui.com/static/logo.png"></code>
+
 ### Desenvolvido com api pública do Github, ReactJS, Material UI, JavaScript e TypeScript.
 
 # Iniciando

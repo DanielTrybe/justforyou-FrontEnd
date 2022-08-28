@@ -6,8 +6,8 @@ import Skeleton from "@mui/material/Skeleton";
 
 interface MediaProps {
   length: number;
-  childClass: any;
-  fatherClass: any;
+  childClass: string;
+  fatherClass: string;
 }
 
 function SkeletonCustom({ length, childClass, fatherClass }: MediaProps) {

@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import api from "services/api/api";
 // import { CardsContextProps } from "./interface";
 
-import { CardsDetailsContextProps, BranchList } from "./types";
+import { CardsDetailsContextProps, BranchList, CommitProps } from "./types";
 
 export const CardsDetailsContext = createContext(
   {} as CardsDetailsContextProps
@@ -14,7 +14,7 @@ const CardDetailsProvider: React.FC<{ children: React.ReactNode }> = ({
   const [cardDetail, setCardDetail] = useState([] as BranchList);
   const [loading, setLoading] = useState(false);
 
-  const [commits, setCommits] = useState([] as any);
+  const [commits, setCommits] = useState([] as CommitProps);
   const [loadingCommits, setLoadingCommits] = useState(false);
 
   const getOneRepo = async (owner: string, repo: string) => {

@@ -13,6 +13,7 @@ const useStyles = makeStyles({
     transform: "translate(-50%, -50%)",
     width: "40%",
     maxHeight: "80%",
+    minHeight: 200,
     overflow: "scroll",
     background: "white",
     border: "1px solid #EAEAEA",

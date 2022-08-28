@@ -2,10 +2,11 @@ import { Card } from "services/context/types";
 import { Grid } from "@mui/material";
 
 import { CompactCard } from "components/Items";
+import { DataCards } from "services/context/types";
 
 type CardProps = {
   index: number;
-  card: any;
+  card: DataCards;
 };
 
 function CardShow({ card, index }: CardProps) {
